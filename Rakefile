@@ -13,8 +13,9 @@ require './card_generator'
 include BoilerMakeBingo
 
 TechWords = %w{HTML5 Javascript Ruby Go Swift C Haskell Rust Erlang Elixir LISP Node}
-ServiceWords = %w{Twitter Twilio InIn HealthKit Force.com IFTTT Fitbit Github Sunlight Labs Amazon Alexa}
-PlatformWords = %w{Android iOS Web Pebble Apple\ Watch Android Wear Cardboard Arduino Raspberry Pi Kinect Heroku Docker}
+ServiceWords = %w{Twitter Twilio HealthKit Force.com IFTTT Fitbit Github Sunlight\ Labs Amazon\ Alexa Google Facebook}
+PlatformWords = %w{Android iOS Web Cloud Pebble Apple\ Watch Android\ Wear Google\ Cardboard Arduino Raspberry\ Pi Kinect Heroku Docker}
+
 SimpleGenerator = WordGenerator.new(TechWords + ServiceWords + PlatformWords)
 BucketGenerator = BucketedWordGenerator.new([
   {words: TechWords, weight: 1},
