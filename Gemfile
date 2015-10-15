@@ -6,4 +6,5 @@ gem "rake", "~> 10.3.2"
 gem "racksh", "~> 1.0.0"
 gem "dotenv", "~> 0.11.1"
 gem "docx_mailmerge", github: "sep/docx_mailmerge"
-
+gem 'libreconv'
+gem 'combine_pdf'

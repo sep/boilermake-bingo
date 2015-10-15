@@ -9,9 +9,12 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    combine_pdf (0.2.6)
+      ruby-rc4 (>= 0.1.5)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
+    ffi (1.9.10)
     httmultiparty (0.3.10)
       httparty (>= 0.7.3)
       multipart-post
@@ -22,6 +25,8 @@ GEM
       httmultiparty (= 0.3.10)
       httparty (= 0.13.1)
     json (1.8.3)
+    libreconv (0.9.1)
+      spoon
     mini_portile (0.6.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -34,14 +39,19 @@ GEM
       rack (>= 1.0)
       rack-test (>= 0.5)
     rake (10.3.2)
+    ruby-rc4 (0.1.5)
+    spoon (0.0.4)
+      ffi
     zipruby (0.3.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  combine_pdf
   docx_mailmerge!
   dotenv (~> 0.11.1)
   hypdf (~> 1.0.7)
+  libreconv
   racksh (~> 1.0.0)
   rake (~> 10.3.2)

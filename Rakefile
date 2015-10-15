@@ -4,6 +4,8 @@ require 'bundler'
 Bundler.require
 Dotenv.load
 
+require 'libreconv'
+require 'combine_pdf'
 require './word_generator'
 require './bingo_card'
 require './card_generator'
@@ -33,3 +35,15 @@ task :multiple_cards do
   cards.generate(5, '.')
 end
 
+task :whatever do
+  soffice = '/Applications/LibreOffice.app/Contents/MacOS/soffice'
+  Libreconv.convert('outfile_1.docx', 'whatever1.pdf', soffice)
+  Libreconv.convert('outfile_2.docx', 'whatever2.pdf', soffice)
+end
+
+task :join do
+  pdf = CombinePDF.new
+  pdf << CombinePDF.load("whatever1.pdf")
+  pdf << CombinePDF.load("whatever2.pdf")
+  pdf.save "combined.pdf"
+end
