@@ -15,10 +15,15 @@ module BoilerMakeBingo
     end
 
     def generate
-      @buckets
-        .inject([]){|memo, obj| memo + obj[:words]*obj[:weight]}
-        .sample(500).uniq  # hack to ensure we get at least 25 uniques
-        .take(25)
+      weighted = @buckets.inject([]){|memo, obj| memo + obj[:words]*obj[:weight]}
+
+      words = Hash.new
+
+      until words.keys.length == 25 do
+        words[weighted.sample(1).first] = ""
+      end
+
+      words.keys
     end
   end
 end
