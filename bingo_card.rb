@@ -18,9 +18,7 @@ module BoilerMakeBingo
         .map{|k, i| {key: k, index: i}}
         .inject({}){|memo, obj| memo[obj[:key]] = @words[obj[:index]]; memo}
 
-      output = @docx.generate_docx_bytes(cells, {})
-
-      File.open(output_file, 'wb') {|file| file.write(output)}
+      File.open(output_file, 'wb') {|file| file.write(@docx.generate_docx_bytes(cells, {}))}
     end
   end
 end
