@@ -12,6 +12,7 @@ require './card_generator'
 
 include BoilerMakeBingo
 
+Soffice = '/Applications/LibreOffice.app/Contents/MacOS/soffice'
 TechWords = %w{HTML5 Javascript Ruby Go Swift C Haskell Rust Erlang Elixir LISP Node}
 ServiceWords = %w{Twitter Twilio HealthKit Force.com IFTTT Fitbit Github Sunlight\ Labs Amazon\ Alexa Google Facebook}
 PlatformWords = %w{Android iOS Web Cloud Pebble Apple\ Watch Android\ Wear Google\ Cardboard Arduino Raspberry\ Pi Kinect Heroku Docker}
@@ -24,27 +25,26 @@ BucketGenerator = BucketedWordGenerator.new([
 ])
 
 desc "A 'card.docx' is the input... should have mail merge fields b0 through o4"
-task :single_card do
-  rm 'outfile.docx'
-  card = Card.new('card.docx', BucketGenerator.generate)
-  card.generate('outfile.docx')
+task :single_card => :clean do
+  Card.new('card.docx', BucketGenerator.generate).generate('output.docx')
+  Libreconv.convert('output.docx', 'output.pdf', Soffice)
+  Dir.glob('output.docx').each{|docx| File.delete(docx)}
 end
 
 desc "A 'card.docx' is the input... should have mail merge fields b0 through o4"
-task :multiple_cards do
-  cards = CardGenerator.new('card.docx', BucketGenerator)
-  cards.generate(5, '.')
+task :multiple_cards => :clean do
+  Dir.mkdir('output')
+
+  CardGenerator.new('card.docx', BucketGenerator).generate(20, 'output')
+  Dir.glob('output/*.docx').each{|docx| Libreconv.convert(docx, "#{docx}.pdf", Soffice)}
+
+  output = CombinePDF.new
+  Dir.glob('output/*.pdf').each{|pdf| output << CombinePDF.load(pdf)}
+
+  output.save "output.pdf"
 end
 
-task :whatever do
-  soffice = '/Applications/LibreOffice.app/Contents/MacOS/soffice'
-  Libreconv.convert('outfile_1.docx', 'whatever1.pdf', soffice)
-  Libreconv.convert('outfile_2.docx', 'whatever2.pdf', soffice)
-end
-
-task :join do
-  pdf = CombinePDF.new
-  pdf << CombinePDF.load("whatever1.pdf")
-  pdf << CombinePDF.load("whatever2.pdf")
-  pdf.save "combined.pdf"
+task :clean do
+  Dir.glob('output/*').each{|file| File.delete(file)}
+  Dir.rmdir('output') if Dir.exists?('output')
 end
