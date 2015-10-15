@@ -19,7 +19,7 @@ PlatformWords = %w{Android iOS Web Cloud Pebble Apple\ Watch Android\ Wear Googl
 SimpleGenerator = WordGenerator.new(TechWords + ServiceWords + PlatformWords)
 BucketGenerator = BucketedWordGenerator.new([
   {words: TechWords, weight: 1},
-  {words: ServiceWords, weight: 3},
+  {words: ServiceWords, weight: 4},
   {words: PlatformWords, weight: 2}
 ])
 
