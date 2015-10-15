@@ -26,13 +26,13 @@ BucketGenerator = BucketedWordGenerator.new([
 desc "A 'card.docx' is the input... should have mail merge fields b0 through o4"
 task :single_card do
   rm 'outfile.docx'
-  card = Card.new('card.docx', SimpleGenerator.generate)
+  card = Card.new('card.docx', BucketGenerator.generate)
   card.generate('outfile.docx')
 end
 
 desc "A 'card.docx' is the input... should have mail merge fields b0 through o4"
 task :multiple_cards do
-  cards = CardGenerator.new('card.docx', SimpleGenerator)
+  cards = CardGenerator.new('card.docx', BucketGenerator)
   cards.generate(5, '.')
 end
 
