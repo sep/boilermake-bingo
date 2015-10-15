@@ -1,11 +1,8 @@
-require 'docx_mailmerge'
-
 module BoilerMakeBingo
   class Card
     def initialize(template, words)
       @template = template
       @words = words
-#DocxMailmerge::DocxCreator
       @docx = DocxMailmerge::DocxCreator.new(@template)
     end
 
