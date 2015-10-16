@@ -3,8 +3,8 @@ require 'bundler'
 
 Bundler.require
 Dotenv.load
+ENVied.require
 
-Soffice = '/Applications/LibreOffice.app/Contents/MacOS/soffice'
 require './word_generator'
 require './bingo_card'
 require './card_generator'
@@ -22,14 +22,14 @@ BucketGenerator = BucketedWordGenerator.new([
   {words: PlatformWords, weight: 2}
 ])
 
-desc "A 'card.docx' is the input... should have mail merge fields b0 through o4"
+desc "A '#{ENVied.TEMPLATE}' is the input... should have mail merge fields b0 through o4"
 task :single_card => :clean do
-  Card.new('card.docx', BucketGenerator.generate).generate_pdf('output.pdf')
+  Card.new(ENVied.TEMPLATE, BucketGenerator.generate).generate_pdf('output.pdf')
 end
 
-desc "A 'card.docx' is the input... should have mail merge fields b0 through o4"
+desc "A '#{ENVied.TEMPLATE}' is the input... should have mail merge fields b0 through o4"
 task :multiple_cards, :num_cards do |t, args|
   args.with_defaults(num_cards: 10)
 
-  CardGenerator.new('card.docx', BucketGenerator).generate(args[:num_cards].to_i)
+  CardGenerator.new(ENVied.TEMPLATE, BucketGenerator).generate(args[:num_cards].to_i)
 end

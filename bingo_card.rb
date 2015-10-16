@@ -24,7 +24,7 @@ module BoilerMakeBingo
     def generate_pdf(output_file)
       docx = "#{output_file}.docx"
       generate(docx)
-      Libreconv.convert(docx, output_file, Soffice)
+      Libreconv.convert(docx, output_file, ENVied.SOFFICE)
       File.delete(docx)
     end
   end
