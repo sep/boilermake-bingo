@@ -23,13 +23,8 @@ BucketGenerator = BucketedWordGenerator.new([
 ])
 
 desc "A '#{ENVied.TEMPLATE}' is the input... should have mail merge fields b0 through o4"
-task :single_card => :clean do
-  Card.new(ENVied.TEMPLATE, BucketGenerator.generate).generate_pdf('output.pdf')
-end
-
-desc "A '#{ENVied.TEMPLATE}' is the input... should have mail merge fields b0 through o4"
-task :multiple_cards, :num_cards do |t, args|
-  args.with_defaults(num_cards: 10)
+task :generate, :num_cards do |t, args|
+  args.with_defaults(num_cards: 1)
 
   CardGenerator.new(ENVied.TEMPLATE, BucketGenerator).generate(args[:num_cards].to_i)
 end
