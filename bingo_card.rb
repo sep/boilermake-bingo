@@ -20,5 +20,12 @@ module BoilerMakeBingo
 
       File.open(output_file, 'wb') {|file| file.write(@docx.generate_docx_bytes(cells, {}))}
     end
+
+    def generate_pdf(output_file)
+      docx = "#{output_file}.docx"
+      generate(docx)
+      Libreconv.convert(docx, output_file, Soffice)
+      File.delete(docx)
+    end
   end
 end
