@@ -1,0 +1,4 @@
+enable_defaults!
+
+variable :SOFFICE, :string
+variable :TEMPLATE, :string, default: 'card.docx'
