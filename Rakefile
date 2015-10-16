@@ -24,6 +24,8 @@ BucketGenerator = BucketedWordGenerator.new([
   {words: PlatformWords, weight: 2}
 ])
 
+OutputDir = 'output'
+
 desc "A 'card.docx' is the input... should have mail merge fields b0 through o4"
 task :single_card => :clean do
   Card.new('card.docx', BucketGenerator.generate).generate('output.docx')
@@ -31,20 +33,23 @@ task :single_card => :clean do
   Dir.glob('output.docx').each{|docx| File.delete(docx)}
 end
 
+task :call, :response do |t, args|
+  response = args[:response]
 desc "A 'card.docx' is the input... should have mail merge fields b0 through o4"
-task :multiple_cards => :clean do
-  Dir.mkdir('output')
+task :multiple_cards, :num_cards => :clean do |t, args|
+  args.with_defaults(num_cards: 10)
 
-  CardGenerator.new('card.docx', BucketGenerator).generate(20, 'output')
-  Dir.glob('output/*.docx').each{|docx| Libreconv.convert(docx, "#{docx}.pdf", Soffice)}
+  Dir.mkdir(OutputDir)
+
+  CardGenerator.new('card.docx', BucketGenerator).generate(args[:num_cards], OutputDir)
+  Dir.glob("#{OutputDir}/*.docx").each{|docx| Libreconv.convert(docx, "#{docx}.pdf", Soffice)}
 
   output = CombinePDF.new
-  Dir.glob('output/*.pdf').each{|pdf| output << CombinePDF.load(pdf)}
-
+  Dir.glob("#{OutputDir}/*.pdf").each{|pdf| output << CombinePDF.load(pdf)}
   output.save "output.pdf"
 end
 
 task :clean do
-  Dir.glob('output/*').each{|file| File.delete(file)}
-  Dir.rmdir('output') if Dir.exists?('output')
+  Dir.glob("#{OutputDir}/*").each{|file| File.delete(file)}
+  Dir.rmdir(OutputDir) if Dir.exists?(OutputDir)
 end
