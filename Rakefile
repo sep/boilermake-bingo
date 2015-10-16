@@ -28,3 +28,8 @@ task :generate, :num_cards do |t, args|
 
   CardGenerator.new(ENVied.TEMPLATE, BucketGenerator).generate(args[:num_cards].to_i)
 end
+
+desc "Shows the merge fields in '#{ENVied.TEMPLATE}'"
+task :merge_fields do
+  p Card.new(ENVied.TEMPLATE, []).merge_fields
+end
