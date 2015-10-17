@@ -21,12 +21,13 @@ BucketGenerator = BucketedWordGenerator.new([
   {words: ServiceWords, weight: 4},
   {words: PlatformWords, weight: 2}
 ])
+HashtagGenerator = HashtagGeneratorDecorator.new(BucketGenerator)
 
 desc "A '#{ENVied.TEMPLATE}' is the input... should have mail merge fields b0 through o4"
 task :generate, :num_cards do |t, args|
   args.with_defaults(num_cards: 1)
 
-  CardGenerator.new(ENVied.TEMPLATE, BucketGenerator).generate(args[:num_cards].to_i)
+  CardGenerator.new(ENVied.TEMPLATE, HashtagGenerator).generate(args[:num_cards].to_i)
 end
 
 desc "Shows the merge fields in '#{ENVied.TEMPLATE}'"

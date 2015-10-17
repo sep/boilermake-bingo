@@ -26,4 +26,14 @@ module BoilerMakeBingo
       words.keys
     end
   end
+
+  class HashtagGeneratorDecorator
+    def initialize(generator)
+      @generator = generator
+    end
+
+    def generate
+      @generator.generate.map{|w| "##{w}"}
+    end
+  end
 end
