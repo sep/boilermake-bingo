@@ -1,0 +1,20 @@
+Details:
+
+PRIZES:
+
+The 1st Bingo is for the first team to report a BoilerMake Bingo to the SEP Booth.
+The 2nd Bingo is for the second team to report a BoilerMake Bingo to the SEP Booth.
+
+All subsequent bingo prizes are candy.
+
+A Bingo can be any of the following:
+* Up/Down
+* Left/Right
+* Diagonal + ASK SEP
+* 4 Corners + ASK SEP
+
+ASK SEP: Come ask one of the SEP engineers a question about your project or SEP.
+
+
+HOW TO GET A BINGO:  Use the programming language/service/API/platform in your hack.
+
