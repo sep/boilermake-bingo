@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/sep/docx_mailmerge.git
-  revision: c840021ab789f232357799e1f4c7d494f46b6436
+  remote: https://github.com/sep/docx_mailmerge
+  revision: 6e8b6a7700e3cd18e7439e123883025e85a15aff
   specs:
-    docx_mailmerge (0.0.2)
+    docx_mailmerge (0.0.3)
       nokogiri
       zipruby
 
@@ -25,9 +25,9 @@ GEM
     ffi (1.9.10)
     libreconv (0.9.1)
       spoon
-    mini_portile (0.6.2)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
+    mini_portile2 (2.1.0)
+    nokogiri (1.7.0.1)
+      mini_portile2 (~> 2.1.0)
     rack (1.6.4)
     rake (10.3.2)
     ruby-rc4 (0.1.5)
@@ -47,3 +47,6 @@ DEPENDENCIES
   envied
   libreconv
   rake (~> 10.3.2)
+
+BUNDLED WITH
+   1.13.7
