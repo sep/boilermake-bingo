@@ -33,7 +33,7 @@ module BoilerMakeBingo
     end
 
     def generate
-      @generator.generate.map{|w| "##{w}"}
+      @generator.generate.map{|w| "#{w}"}
     end
   end
 end
