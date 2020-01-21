@@ -12,7 +12,7 @@ require './card_generator'
 include BoilerMakeBingo
 
 TechWords = %w{JavaScript Ruby Go Swift C Haskell Rust Erlang Elixir TypeScript Elm LISP Node C++ C# Java Python Xamarin Vue Angular React ReactNative Flutter Kotlin Machine\ Learning ARKit AI Python}
-ServiceWords = %w{Twitter Twilio HealthKit IFTTT Fitbit Github Sunlight\ Labs OpenGov ARKit Alexa Google Facebook Minecraft\ Forge}
+ServiceWords = %w{Twitter Twilio HealthKit IFTTT Fitbit Github Sunlight\ Labs OpenGov ARKit Alexa Google Facebook Minecraft\ Forge NOAA\ Climate\ Data\ Online}
 PlatformWords = %w{AI ChromeOS Android iOS Web Apple\ Watch Arduino Raspberry\ Pi Heroku Voice AWS Azure Docker Hadoop}
 
 SimpleGenerator = WordGenerator.new(TechWords + ServiceWords + PlatformWords)
